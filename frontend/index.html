@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>基础模型管理平台 Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>基础模型管理平台 Demo</h1>
+      <p>演示前后端分离架构下的模型、模板、训练任务管理</p>
+    </header>
+
+    <main>
+      <section id="models-section" class="panel">
+        <div class="panel-header">
+          <h2>模型目录</h2>
+          <button id="refresh-models">刷新</button>
+        </div>
+        <form id="model-form" class="form-grid">
+          <input type="text" id="model-name" placeholder="模型名称" required />
+          <input type="text" id="model-task" placeholder="任务类型" required />
+          <input type="text" id="model-owner" placeholder="负责人" required />
+          <input type="text" id="model-version" placeholder="当前版本 (例如 v1.0.0)" />
+          <input type="text" id="model-tags" placeholder="标签 (以逗号分隔)" />
+          <textarea id="model-desc" placeholder="模型描述"></textarea>
+          <button type="submit">创建模型</button>
+        </form>
+        <div id="models-list" class="list"></div>
+      </section>
+
+      <section id="templates-section" class="panel">
+        <div class="panel-header">
+          <h2>模塑模板</h2>
+          <button id="refresh-templates">刷新</button>
+        </div>
+        <form id="template-form" class="form-grid">
+          <input type="text" id="template-name" placeholder="模板名称" required />
+          <textarea id="template-desc" placeholder="模板描述"></textarea>
+          <textarea
+            id="template-params"
+            placeholder='参数定义 (JSON 数组, 例如: [{"name":"epochs","type":"int","default":"5"}])'
+          ></textarea>
+          <button type="submit">创建模板</button>
+        </form>
+        <div id="templates-list" class="list"></div>
+      </section>
+
+      <section id="jobs-section" class="panel">
+        <div class="panel-header">
+          <h2>训练任务</h2>
+          <button id="refresh-jobs">刷新</button>
+        </div>
+        <form id="job-form" class="form-grid">
+          <input type="text" id="job-model" placeholder="模型 ID" required />
+          <input type="text" id="job-dataset" placeholder="数据集路径" required />
+          <input type="text" id="job-pipeline" placeholder="编排流水线" required />
+          <button type="submit">提交任务</button>
+        </form>
+        <div id="jobs-list" class="list"></div>
+      </section>
+    </main>
+
+    <template id="model-card-template">
+      <article class="card">
+        <h3></h3>
+        <p class="meta"></p>
+        <p class="desc"></p>
+        <div class="actions">
+          <button class="delete">删除</button>
+        </div>
+      </article>
+    </template>
+
+    <template id="template-card-template">
+      <article class="card">
+        <h3></h3>
+        <p class="desc"></p>
+        <pre class="params"></pre>
+        <div class="actions">
+          <button class="delete">删除</button>
+        </div>
+      </article>
+    </template>
+
+    <template id="job-card-template">
+      <article class="card">
+        <h3></h3>
+        <p class="desc"></p>
+        <pre class="metrics"></pre>
+        <div class="actions">
+          <button class="delete">删除</button>
+        </div>
+      </article>
+    </template>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
